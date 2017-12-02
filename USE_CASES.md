@@ -11,6 +11,7 @@ This documentation provides examples for specific use cases. Please [open an iss
 * [Transient Fault Handling](#transient_faults)
 * [How to Setup a Domain Whitelabel](#domain_whitelabel)
 * [How to View Email Statistics](#email_stats)
+* [How to transform HTML to plain text](#html_to_plain_text)
 
 <a name="attachments"></a>
 # Attachments
@@ -657,3 +658,34 @@ Find more information about all of SendGrid's whitelabeling related documentatio
 You can find documentation for how to view your email statistics via the UI [here](https://app.sendgrid.com/statistics) and via API [here](https://github.com/sendgrid/sendgrid-csharp/blob/master/USAGE.md#stats).
 
 Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as SendGrid processes your email.
+
+<a name="html_to_plain_text"></a>
+# How to transform HTML to plain text
+
+Although the HTML tags could be removed using regular expressions, the best solution is parsing the HTML code with a specific library, such as [HTMLAgilityPack](http://html-agility-pack.net/). 
+
+The following code shows how to parse an input string with HTML code and remove all tags:
+
+```csharp
+
+using HtmlAgilityPack;
+
+namespace Example {
+
+	internal class Example
+    {
+		/// <summary>
+		/// Convert the HTML content to plain text
+		/// </summary>
+		/// <param name="html">The html content which is going to be converted</param>
+		/// <returns>A string</returns>
+		public static string HtmlToPlainText(string html)
+		{
+			HtmlDocument document = new HtmlDocument();
+			document.LoadHtml(html);
+			return document.DocumentNode == null ? string.Empty : document.DocumentNode.InnerText;
+		}	
+	}
+}
+
+```
