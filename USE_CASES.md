@@ -672,20 +672,20 @@ using HtmlAgilityPack;
 
 namespace Example {
 
-	internal class Example
+    internal class Example
     {
-		/// <summary>
-		/// Convert the HTML content to plain text
-		/// </summary>
-		/// <param name="html">The html content which is going to be converted</param>
-		/// <returns>A string</returns>
-		public static string HtmlToPlainText(string html)
-		{
-			HtmlDocument document = new HtmlDocument();
-			document.LoadHtml(html);
-			return document.DocumentNode == null ? string.Empty : document.DocumentNode.InnerText;
-		}	
-	}
+	/// <summary>
+	/// Convert the HTML content to plain text
+	/// </summary>
+	/// <param name="html">The html content which is going to be converted</param>
+	/// <returns>A string</returns>
+	public static string HtmlToPlainText(string html)
+	{
+            HtmlDocument document = new HtmlDocument();
+	    document.LoadHtml(html);
+	    return document.DocumentNode == null ? string.Empty : document.DocumentNode.InnerText;
+        }	
+    }
 }
 
 ```
